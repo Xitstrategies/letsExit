@@ -1,0 +1,16 @@
+{
+  "name": "xitstrategies",
+  "version": "1.0.0",
+  "description": "Export Manifest system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Morgan Heimbeck",
+  "license": "MIT",
+  "homepage": "http://www.exitstrategies.com",
+  "dependencies": {
+    "canjs": "^2.2.0",
+    "jquery": "^2.2.1"
+  }
+}
