@@ -1,8 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from .StockKeepingUnit import StockKeepingUnit
-from .Authentication import Authentication
+from .stockKeepingUnit import StockKeepingUnit
 #
 # Details of a container
 #
@@ -10,13 +9,13 @@ from .Authentication import Authentication
 class Detail(models.Model):
     StockKeepingUnit = models.ForeignKey(StockKeepingUnit)
     Amount = models.IntegerField()
-    Unit = models.CharField() #Box,Crate,etc.
+    Unit = models.CharField(max_length=50) #Box,Crate,etc.
     Weight = models.IntegerField() # Calculated if StockKeepingUnit supplied
-    WeightType = models.CharField() #KGS, LBS
+    WeightType = models.CharField(max_length=50) #KGS, LBS
 
-    CreatedByUser = models.ForeignKey(Authentication)
+    CreatedByUser = models.CharField(max_length=50)
     CreatedDate = models.DateTimeField(auto_now_add=True)
-    UpdatedByUser = models.ForeignKey(Authentication)
+    UpdatedByUser = models.CharField(max_length=50)
     UpdatedDate = models.DateTimeField(auto_now=True)
 
     REQUIRED_FIELDS = ['CreatedByUser']

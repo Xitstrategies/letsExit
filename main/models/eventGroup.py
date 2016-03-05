@@ -1,33 +1,26 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from .Client import Client
-from .Shipment import Shipment
-from .Carrier import Carrier
-from .Authentication import Authentication
+from .main import Client,Tracking
+from .shipment import Shipment
+from .carrier import Carrier
 #
 #
 #
 
-class EventGroup(models.Model):
-    Shipment = models.ForeignKey(Shipment)
-    Client = models.ForeignKey(Client)
+class EventGroup(Tracking):
+    Shipment = models.ForeignKey('Shipment')
+    Client = models.ForeignKey('Client')
 
-    Name = models.CharField() # Voyage/Flight Number?
+    Name = models.CharField(max_length=50) # Voyage/Flight Number?
     Sequence = models.IntegerField()
     BillNumber = models.CharField(max_length=12)
-    Carrier = models.ForeignKey(Carrier)
+    Carrier = models.ForeignKey('Carrier')
 
     #VesselInfo probably needed here
-    #VesselIdentifier = models.CharField() #IMO, Tail Number, License Plate, etc.
-    #VesselName = models.CharField() #OPTIONAL
+    #VesselIdentifier = models.CharField(max_length=50) #IMO, Tail Number, License Plate, etc.
+    #VesselName = models.CharField(max_length=50) #OPTIONAL
     #VesselOperator = models.ForeignKey(Carrier)
-    #VoyageIdentifier = models.CharField() # Voyage/Flight Number?
+    #VoyageIdentifier = models.CharField(max_length=50) # Voyage/Flight Number?
 
-
-    CreatedByUser = models.ForeignKey(Authentication)
-    CreatedDate = models.DateTimeField(auto_now_add=True)
-    UpdatedByUser = models.ForeignKey(Authentication)
-    UpdatedDate = models.DateTimeField(auto_now=True)
-
-    REQUIRED_FIELDS = ['CreatedByUser','Client','Shipment','Name','Sequence']
+    REQUIRED_FIELDS = ['Client','Shipment','Name','Sequence']

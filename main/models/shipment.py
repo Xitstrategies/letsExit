@@ -1,30 +1,25 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from .Client import Client
-from .Address import Address
-from .Authentication import Authentication
+from .main import *
 #
 #
 #
 
-class Shipment(models.Model):
+class Shipment(Tracking):
     # Think about handling the UI a little funky from TT where you show each leg can have a shipment or something
     BillNumber = models.CharField(max_length=12)
     # move to EventGroup
     #ParentBillNumber = models.CharField(max_length=12)
     ShipperName = models.CharField(max_length=120)
-    ShipperAddress = models.ForeignKey(Address)
+    Shipper = models.ForeignKey(Address, null=True, related_name='Shipper')
     ConsigneeName = models.CharField(max_length=120)
-    ConsigeeAddress = models.ForeignKey(Address)
+    Consigee = models.ForeignKey(Address, null=True, related_name='Consigee')
     NotifyName = models.CharField(max_length=120)
-    NotifyAddress = models.ForeignKey(Address)
-
+    Notify = models.ForeignKey(Address, null=True, related_name='Notify')
+    Notify2Name = models.CharField(max_length=120)
+    Notify2 = models.ForeignKey(Address, null=True, related_name='Notify2')
 
     Client = models.ForeignKey(Client)
-    CreatedByUser = models.ForeignKey(Authentication)
-    CreatedDate = models.DateTimeField(auto_now_add=True)
-    UpdatedByUser = models.ForeignKey(Authentication)
-    UpdatedDate = models.DateTimeField(auto_now=True)
 
-    REQUIRED_FIELDS = ['CreatedByUser','Client','BillNumber']
+    REQUIRED_FIELDS = ['Client','BillNumber']

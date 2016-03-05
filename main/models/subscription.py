@@ -1,23 +1,18 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from .Authentication import Authentication
-from .Currency import Currency
-from .Client import Client
+from .currency import Currency
+from .main import Client,Tracking
 #
 #
 #
 
-class Subscription(models.Model):
+class Subscription(Tracking):
     Name = models.CharField(max_length=150)
-    Description = models.CharField()
+    Description = models.CharField(max_length=50)
     Amount = models.FloatField()
-    Currency = models.ForeignKey(Currency)
+    Currency = models.ForeignKey('Currency')
 
-    Client = models.ForeignKey(Client)
-    CreatedByUser = models.ForeignKey(Authentication)
-    CreatedDate = models.DateTimeField(auto_now_add=True)
-    UpdatedByUser = models.ForeignKey(Authentication)
-    UpdatedDate = models.DateTimeField(auto_now=True)
+    Client = models.ForeignKey('Client')
 
-    REQUIRED_FIELDS = ['CreatedByUser','Client']
+    REQUIRED_FIELDS = ['Client']
