@@ -74,7 +74,17 @@ WSGI_APPLICATION = 'xitstrategies.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
+'''
+'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'mydatabase',
+    'USER': 'mydatabaseuser',
+    'PASSWORD': 'mypassword',
+    'HOST': '127.0.0.1',
+    'PORT': '5432',
+}
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
