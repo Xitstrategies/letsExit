@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from .main import Authentication
 from .container import Container
 from .detail import Detail
 #
@@ -8,10 +9,10 @@ from .detail import Detail
 #
 
 class ContainerDetail(models.Model):
-    Container = models.ForeignKey(Container)
-    Detail = models.ForeignKey(Detail)
+    Container = models.ForeignKey('Container')
+    Detail = models.ForeignKey('Detail')
 
-    CreatedByUser = models.CharField(max_length=50)
-    CreatedDate = models.DateTimeField(auto_now_add=True)
+    CreatedByUser = models.ForeignKey('Authentication', null=False, related_name='%(app_label)s_%(class)s_CreatedByUser')
+    CreatedDate = models.DateTimeField(auto_now_add=True, blank=True)
 
     REQUIRED_FIELDS = ['Container','Detail']

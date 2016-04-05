@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'authentication',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -78,11 +79,11 @@ WSGI_APPLICATION = 'xitstrategies.wsgi.application'
 'default': {
     'ENGINE': 'django.db.backends.postgresql',
     'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'mydatabase',
-    'USER': 'mydatabaseuser',
-    'PASSWORD': 'mypassword',
-    'HOST': '127.0.0.1',
-    'PORT': '5432',
+    'NAME': 'fancy1_main_1',
+    'USER': 'fancy1_morgan',
+    'PASSWORD': 'mCrafty223',
+    'HOST': '50.87.146.48',
+    'PORT': '3306',
 }
 '''
 DATABASES = {
@@ -91,6 +92,16 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+#     },
+#     'main': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'fancy1_main_1',
+#         'USER': 'fancy1_morgan',
+#         'PASSWORD': 'mCrafty223',
+#         'HOST': '50.87.146.48',
+#         'PORT': '3306'
+#     }
+# }
 
 
 # Password validation
@@ -130,3 +141,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'authentication.Account'

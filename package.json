@@ -12,5 +12,9 @@
   "dependencies": {
     "canjs": "^2.2.0",
     "jquery": "^2.2.1"
+  },
+  "devDependencies": {
+    "steal": "^0.15.0",
+    "steal-tools": "^0.14.1"
   }
 }

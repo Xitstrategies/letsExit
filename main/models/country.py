@@ -12,5 +12,9 @@ class Country(models.Model):
     ISO_2_Code = models.CharField(max_length=2)
 
     REQUIRED_FIELDS = ['Name']
+
+    def __str__(self):
+        return self.Name
+
     class Meta:
         verbose_name_plural = 'countries'

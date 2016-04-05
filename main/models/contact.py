@@ -18,4 +18,7 @@ class Contact(Tracking):
 
     Client = models.ForeignKey('Client', null=False)
 
+    def __str__(self):
+        return self.Name
+
     REQUIRED_FIELDS = ['Name','Client']

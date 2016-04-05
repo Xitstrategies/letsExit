@@ -1,25 +1,55 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from .main import *
-#
-#
-#
+from .main import Tracking,Address,Client
+'''Shipment Model'''
+'''
+TODO: install logging on all models for create/update
 
+import logging
+logger = logging.getLogger(__name__)
+logger.info('created shipment',model)
+'''
 class Shipment(Tracking):
     # Think about handling the UI a little funky from TT where you show each leg can have a shipment or something
     BillNumber = models.CharField(max_length=12)
     # move to EventGroup
     #ParentBillNumber = models.CharField(max_length=12)
-    ShipperName = models.CharField(max_length=120)
-    Shipper = models.ForeignKey(Address, null=True, related_name='Shipper')
-    ConsigneeName = models.CharField(max_length=120)
-    Consigee = models.ForeignKey(Address, null=True, related_name='Consigee')
-    NotifyName = models.CharField(max_length=120)
-    Notify = models.ForeignKey(Address, null=True, related_name='Notify')
-    Notify2Name = models.CharField(max_length=120)
-    Notify2 = models.ForeignKey(Address, null=True, related_name='Notify2')
+    ShipperName = models.CharField(max_length=120, blank=True)
+    Shipper = models.ForeignKey('Address', null=True, blank=True, related_name='Shipper')
+    ConsigneeName = models.CharField(max_length=120, blank=True)
+    Consignee = models.ForeignKey('Address', null=True, blank=True, related_name='Consigee')
+    NotifyName = models.CharField(max_length=120, blank=True)
+    Notify = models.ForeignKey('Address', null=True, blank=True, related_name='Notify')
+    Notify2Name = models.CharField(max_length=120, blank=True)
+    Notify2 = models.ForeignKey('Address', null=True, blank=True, related_name='Notify2')
 
-    Client = models.ForeignKey(Client)
+    ''' Beginning of ISF only fields '''
+    ShipToSameAs = models.BooleanField(default=True)
+    ShipToApplyAllContainers = models.BooleanField(default=True)
+    ShipToName = models.CharField(max_length=120, blank=True)
+    ShipTo = models.ForeignKey('Address', null=True, blank=True, related_name='ShipTo')
+    BuyerSameAs = models.BooleanField(default=True)
+    BuyerName = models.CharField(max_length=120, blank=True)
+    Buyer = models.ForeignKey('Address', null=True, blank=True, related_name='Buyer')
+    ImporterSameAs = models.BooleanField(default=True)
+    ImporterName = models.CharField(max_length=120, blank=True)
+    Importer = models.ForeignKey('Address', null=True, blank=True, related_name='Importer')
+    ConsolidatorSameAs = models.BooleanField(default=True)
+    ConsolidatorApplyAllContainers = models.BooleanField(default=True)
+    ConsolidatorName = models.CharField(max_length=120, blank=True)
+    ConsolidatorSameAs = models.BooleanField(default=True)
+    Consolidator = models.ForeignKey('Address', null=True, blank=True, related_name='Consolidator')
+    ContainerStuffingLocationSameAs = models.BooleanField(default=True)
+    ContainerStuffingLocationApplyAllContainers = models.BooleanField(default=True)
+    ContainerStuffingLocationName = models.CharField(max_length=120, blank=True)
+    ContainerStuffingLocation = models.ForeignKey('Address', null=True, blank=True, related_name='ContainerStuffingLocation')
+    ManufacturerSameAs = models.BooleanField(default=True)
+    ManufacturerApplyAllContainerDetails = models.BooleanField(default=True)
+    ManufacturerName = models.CharField(max_length=120, blank=True)
+    Manufacturer = models.ForeignKey('Address', null=True, blank=True, related_name='Manufacturer')
+    ''' End of ISF only fields '''
+
+    Client = models.ForeignKey('Client')
 
     REQUIRED_FIELDS = ['Client','BillNumber']

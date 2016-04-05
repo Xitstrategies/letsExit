@@ -1,8 +1,21 @@
 from django.contrib import admin
 from .models import *
-# Register your models here.
+from .adminShipment import *
 
-admin.site.register(Country)
+'''
+Admin Pages registered here
+'''
+class CountryAdmin(admin.ModelAdmin):
+    list_display = ('Name','ISO_2_Code','ISO_3_Code')
+
+# class CityAdmin(admin.ModelAdmin):
+#     list_display = ('Name','StateRegionName','Country.Name')
+#
+# class ClientAdmin(admin.ModelAdmin):
+#     list_display = ('Name','Address.Street','Address.City.Name','Address.City.Country.Name')
+
+admin.site.register(Address)
+admin.site.register(Country, CountryAdmin)
 admin.site.register(Currency)
 admin.site.register(City)
 admin.site.register(Authentication)
@@ -16,13 +29,3 @@ admin.site.register(ClientSubscription)
 admin.site.register(Subscription)
 admin.site.register(Product)
 admin.site.register(SubscriptionProduct)
-
-admin.site.register(Shipment)
-admin.site.register(Security)
-admin.site.register(EventGroup)
-admin.site.register(Event)
-admin.site.register(Container)
-admin.site.register(ContainerDetail)
-admin.site.register(Detail)
-admin.site.register(StockKeepingUnit)
-admin.site.register(Seal)

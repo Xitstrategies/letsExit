@@ -14,4 +14,7 @@ class ClientCode(Tracking):
 
     Client = models.ForeignKey('Client')
 
+    def __str__(self):
+        return self.Client.Name + ' ' + self.Code
+
     REQUIRED_FIELDS = ['Code','CodeType']

@@ -13,11 +13,10 @@ class Security(Tracking):
 
     SecurityType = models.CharField(max_length=50)
     BillNumberPrefix = models.CharField(max_length=4)
-    ParentBillNumberPrefix = models.CharField(max_length=4)
-    OriginalSentDate = models.DateTimeField()
-    OriginalAcceptedDate = models.DateTimeField()
+    ParentBillNumberPrefix = models.CharField(max_length=4, blank=True)
+    OriginalSentDate = models.DateTimeField(default='0000-00-00 00:00:00',blank=True)
+    OriginalAcceptedDate = models.DateTimeField(default='0000-00-00 00:00:00',blank=True)
 
     REQUIRED_FIELDS = ['Client','Shipment','SecurityType']
     class Meta:
         verbose_name_plural = 'security filings'
-        

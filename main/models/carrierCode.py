@@ -13,4 +13,7 @@ class CarrierCode(Tracking):
     Code = models.CharField(max_length=15)
     Type = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.Carrier.Name + ' ' + self.Code
+
     REQUIRED_FIELDS = ['Client','Carrier','Code','Type']
