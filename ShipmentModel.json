@@ -1,0 +1,160 @@
+[
+    {
+        "id": 1,
+        "Client_id": 3,
+        "BillNumber": "MORGANTEST1",
+        "ShipperName": "Sunshine Co",
+        "Shipper_id": 2,
+        "Shipper": {
+            "Street": "Rainbow St S",
+            "PostalZipCode": "",
+            "City_id": 15,
+            "City": "Hong Kong",
+            "StateRegionName": "",
+            "Country_id": 3,
+            "CountryName": "Hong Kong"
+        },
+        "ConsigneeName": "Puget Solar",
+        "Consignee_id": 5,
+        "Consignee": {
+            "Street": "Columbia St",
+            "PostalZipCode": "980001",
+            "City_id": 1,
+            "City": "Seattle",
+            "StateRegionName": "WA",
+            "Country_id": 1,
+            "CountryName": "USA"
+        },
+        "NotifyName": "",
+        "Notify_id": null,
+        "Notify": null,
+        "Notify2Name": "",
+        "Notify2_id": null,
+        "Notify2": null,
+        "SecurityFilings": [
+            {
+                "id": 1,
+                "SecurityType": "AMS",
+                "BillNumberPrefix": "PSGA",
+                "ParentBillNumberPrefix": "MAEU",
+                "OriginalSentDate": "0000-00-00T00:00:00",
+                "OriginalAcceptedDate": "0000-00-00T00:00:00"
+            },
+            {
+                "id": 2,
+                "SecurityType": "ISF",
+                "BillNumberPrefix": "PSGA",
+                "ParentBillNumberPrefix": null,
+                "OriginalSentDate": "0000-00-00T00:00:00",
+                "OriginalAcceptedDate": "0000-00-00T00:00:00"
+            },
+            {
+                "id": 3,
+                "SecurityType": "ACI",
+                "BillNumberPrefix": "PSG1",
+                "ParentBillNumberPrefix": "MAEU",
+                "OriginalSentDate": "0000-00-00T00:00:00",
+                "OriginalAcceptedDate": "0000-00-00T00:00:00"
+            },
+            {
+                "id": 4,
+                "SecurityType": "AFR",
+                "BillNumberPrefix": "PSGA",
+                "ParentBillNumberPrefix": "MAEU",
+                "OriginalSentDate": "0000-00-00T00:00:00",
+                "OriginalAcceptedDate": "0000-00-00T00:00:00"
+            }
+        ],
+        "EventGroups": [
+            {
+                "id": 1,
+                "Name": "",
+                "Mode": "T",
+                "Sequence": 1,
+                "BillNumber": "52351231241",
+                "Carrier_id": 2,
+                "Carrier": {
+                    "id": 2,
+                    "Name": "Maersk"
+                },
+                "Events": [
+                    {
+                        "id": 1,
+                        "Sequence":1,
+                        "City_id": 5,
+                        "CityName": "Guongdong",
+                        "StateRegionName": "",
+                        "Country_id": 5,
+                        "CountryName": "China",
+                        "ScheduledDate": "0000-00-00T00:00:00",
+                        "ActualDate": "0000-00-00T00:00:00",
+                        "Contact_id": 1,
+                        "ContactName": "James Xing"
+                    },
+                    {
+                        "id": 2,
+                        "Sequence":2,
+                        "City_id": 15,
+                        "CityName": "Hong Kong",
+                        "StateRegionName": "",
+                        "Country_id": 3,
+                        "CountryName": "Hong Kong",
+                        "ScheduledDate": "0000-00-00T00:00:00",
+                        "ActualDate": "0000-00-00T00:00:00",
+                        "Contact_id": 1,
+                        "ContactName": "James Xing"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "Name": "",
+                "Mode": "O",
+                "Sequence": 2,
+                "BillNumber": "52351231241",
+                "Carrier_id": 2,
+                "Carrier": {
+                    "id": 2,
+                    "Name": "Maersk"
+                },
+                "Events": [
+                    {
+                        "id": 3,
+                        "Sequence":1,
+                        "City_id": 15,
+                        "CityName": "Hong Kong",
+                        "StateRegionName": "",
+                        "Country_id": 3,
+                        "CountryName": "Hong Kong",
+                        "ScheduledDate": "0000-00-00T00:00:00",
+                        "ActualDate": "0000-00-00T00:00:00",
+                        "Contact_id": null,
+                        "ContactName": ""
+                    },
+                    {
+                        "id": 4,
+                        "Sequence":2,
+                        "City_id": 1,
+                        "CityName": "Seattle",
+                        "StateRegionName": "WA",
+                        "Country_id": 1,
+                        "CountryName": "USA",
+                        "ScheduledDate": "0000-00-00T00:00:00",
+                        "ActualDate": "0000-00-00T00:00:00",
+                        "Contact_id": null,
+                        "ContactName": ""
+                    }
+                ]
+            }
+        ],
+        "Containers": [
+            {
+                "id": 1,
+                "Number": ""
+            }
+        ]
+    },
+    {
+
+    }
+]
