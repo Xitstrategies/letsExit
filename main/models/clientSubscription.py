@@ -8,8 +8,8 @@ from .main import Client,Tracking
 #
 
 class ClientSubscription(Tracking):
-    Subscription = models.ForeignKey('Subscription')
-    Client = models.ForeignKey('Client')
+    Subscription = models.ForeignKey('Subscription',on_delete=models.CASCADE,)
+    Client = models.ForeignKey('Client',on_delete=models.CASCADE,)
     StartDate = models.DateField()
     EndDate = models.DateField()
 

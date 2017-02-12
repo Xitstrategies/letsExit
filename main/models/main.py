@@ -11,9 +11,9 @@ TODO: Add blank=True to ForeignKey fields for admin pages so that blank can be s
 
 
 class Tracking(models.Model):
-    CreatedByUser = models.ForeignKey('Authentication', null=False, related_name='%(app_label)s_%(class)s_CreatedByUser')
+    CreatedByUser = models.ForeignKey('Authentication', null=False, related_name='%(app_label)s_%(class)s_CreatedByUser',on_delete=models.CASCADE,)
     CreatedDate = models.DateTimeField(auto_now_add=True, blank=True)
-    UpdatedByUser = models.ForeignKey('Authentication', null=True, blank=True, related_name='%(app_label)s_%(class)s_UpdatedByUser')
+    UpdatedByUser = models.ForeignKey('Authentication', null=True, blank=True, related_name='%(app_label)s_%(class)s_UpdatedByUser',on_delete=models.CASCADE,)
     UpdatedDate = models.DateTimeField(auto_now=True, blank=True)
 
     class Meta:
@@ -25,12 +25,12 @@ class Authentication(models.Model):
     UserName = models.CharField(max_length=300)
     Email = models.EmailField()
     FullName = models.CharField(max_length=150)
-    Address = models.ForeignKey('Address', null=True, blank=True, related_name='Authentication_Address')
+    Address = models.ForeignKey('Address', null=True, blank=True, related_name='Authentication_Address',on_delete=models.CASCADE,)
 
-    Client = models.ForeignKey('Client', related_name='Authentication_Client')
+    Client = models.ForeignKey('Client', related_name='Authentication_Client',on_delete=models.CASCADE,)
 
     CreatedDate = models.DateTimeField(auto_now_add=True, blank=True)
-    UpdatedByUser = models.ForeignKey('self', null=True, blank=True, related_name='main_Authentication_UpdatedByUser')
+    UpdatedByUser = models.ForeignKey('self', null=True, blank=True, related_name='main_Authentication_UpdatedByUser',on_delete=models.CASCADE,)
     UpdatedDate = models.DateTimeField(auto_now=True, blank=True)
 
     REQUIRED_FIELDS = ['UserName','Email','FullName','Client']
@@ -46,10 +46,10 @@ class Authentication(models.Model):
 class City(Tracking):
     Name = models.CharField(max_length=120)
     StateRegionName = models.CharField(max_length=120, blank=True)
-    Country = models.ForeignKey('Country')
+    Country = models.ForeignKey('Country',on_delete=models.CASCADE,)
 
     # for client specific cities, optional
-    Client = models.ForeignKey('Client', null=True, blank=True, related_name='Client')
+    Client = models.ForeignKey('Client', null=True, blank=True, related_name='Client',on_delete=models.CASCADE,)
 
     REQUIRED_FIELDS = ['Name','Country']
 
@@ -72,15 +72,15 @@ class Address(Tracking):
     Street = models.CharField(max_length=50)
     #AddressLine2 = models.CharField(max_length=50)
     PostalZipCode = models.CharField(max_length=15, blank=True)
-    CityName = models.CharField(max_length=100) # replicated for easy read access
-    City = models.ForeignKey('City', related_name='City')
+    CityName = models.CharField(max_length=100, blank=True) # replicated for easy read access
+    City = models.ForeignKey('City', related_name='City',on_delete=models.CASCADE,)
     StateRegion = models.CharField(max_length=100, blank=True, null=True)
-    CountryName = models.CharField(max_length=100)  # replicated for easy read access
-    Country = models.ForeignKey('Country', related_name='Country')
+    CountryName = models.CharField(max_length=100, blank=True)  # replicated for easy read access
+    Country = models.ForeignKey('Country', related_name='Country', null=True,on_delete=models.CASCADE,)
     ADDRESSTYPES=[('w','Warehouse'),('o','Office'),('c','Container Yard'),(None,'')]
     Type = models.CharField(max_length=1, null=True, blank=True, default=None, choices=ADDRESSTYPES)
 
-    REQUIRED_FIELDS = ['Street','City']
+    REQUIRED_FIELDS = ['Street','CityName','CountryName']
 
     def __str__(self):
         return self.Street + ' ' + self.City.Name + ' ' + self.City.Country.Name
@@ -91,17 +91,17 @@ class Address(Tracking):
 # Additional Addresses for a Client
 # Companies
 class ClientAddress(models.Model):
-    Address = models.ForeignKey('Address', null=False)
-    Client = models.ForeignKey('Client', null=False)
+    Address = models.ForeignKey('Address', null=False,on_delete=models.CASCADE,)
+    Client = models.ForeignKey('Client', null=False,on_delete=models.CASCADE,)
 
 
 # Corporations
 class Client(models.Model):
     Name = models.CharField(max_length=120)
-    Address = models.ForeignKey('Address', null=True, blank=True, related_name='Address') # HQ Address
+    Address = models.ForeignKey('Address', null=True, blank=True, related_name='Address',on_delete=models.CASCADE,) # HQ Address
 
     CreatedDate = models.DateTimeField(auto_now_add=True, blank=True)
-    UpdatedByUser = models.ForeignKey('Authentication', null=True, blank=True, related_name='%(app_label)s_%(class)s_UpdatedByUser')
+    UpdatedByUser = models.ForeignKey('Authentication', null=True, blank=True, related_name='%(app_label)s_%(class)s_UpdatedByUser',on_delete=models.CASCADE,)
     UpdatedDate = models.DateTimeField(auto_now=True, blank=True)
 
     REQUIRED_FIELDS = ['Name']
@@ -112,8 +112,8 @@ class Client(models.Model):
 # Client's book of Companies
 class Company(Tracking):
     Name = models.CharField(max_length=120)
-    Address = models.ForeignKey('Address', null=False)
-    Client = models.ForeignKey('Client', null=False)
+    Address = models.ForeignKey('Address', null=False,on_delete=models.CASCADE,)
+    Client = models.ForeignKey('Client', null=False,on_delete=models.CASCADE,)
     Agent = models.BooleanField(default=False)
     AGENTMODES = [('w','Warehouser'),('t','Trucker'),('s','Shipper?'),('c','Consignee?'),('n','NVO'),('m','MVO'),('r','Rail'),(None,'')]
     AgentModes = models.CharField(max_length=1, null=True, blank=True, default=None, choices=AGENTMODES)

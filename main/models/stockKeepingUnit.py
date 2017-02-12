@@ -12,6 +12,6 @@ class StockKeepingUnit(Tracking):
     Weight = models.IntegerField()
     WeightType = models.CharField(max_length=50) # KGS or LBS
     HarmonizedTariffCode = models.CharField(max_length=50)
-    CountryOfOrigin = models.ForeignKey('Country',null=True,blank=True)
+    CountryOfOrigin = models.ForeignKey('Country',null=True,blank=True,on_delete=models.CASCADE,)
 
     REQUIRED_FIELDS = ['CreatedByUser','Name']

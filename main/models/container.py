@@ -9,16 +9,16 @@ from .main import Client, Tracking, Address
 #
 
 class Container(Tracking):
-    Client = models.ForeignKey('Client')
-    Shipment = models.ForeignKey('Shipment')
+    Client = models.ForeignKey('Client',on_delete=models.CASCADE,)
+    Shipment = models.ForeignKey('Shipment',on_delete=models.CASCADE,)
     Number = models.CharField(max_length=50)
     Order = models.IntegerField(default=1)
     #Size = models. # need to figure out how we want to handle container sizes for containerized and non-containerized goods
 
     ConsolidatorName = models.CharField(max_length=120, blank=True)
-    Consolidator = models.ForeignKey('Address', null=True, blank=True)
+    #Consolidator = models.ForeignKey('Address', null=True, blank=True)
     ContainerStuffingLocationName = models.CharField(max_length=120, blank=True)
-    ContainerStuffingLocation = models.ForeignKey('Address', null=True, blank=True)
+    #ContainerStuffingLocation = models.ForeignKey('Address', null=True, blank=True)
 
     def __str__(self):
         return self.Number

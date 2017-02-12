@@ -8,7 +8,7 @@ from .container import Container
 #
 
 class Seal(Tracking):
-    Container = models.ForeignKey('Container')
+    Container = models.ForeignKey('Container',on_delete=models.CASCADE,)
     Number = models.CharField(max_length=50)
 
     REQUIRED_FIELDS = ['Container','Number']

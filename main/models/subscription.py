@@ -11,8 +11,8 @@ class Subscription(Tracking):
     Name = models.CharField(max_length=150)
     Description = models.CharField(max_length=50)
     Amount = models.FloatField()
-    Currency = models.ForeignKey('Currency')
+    Currency = models.ForeignKey('Currency',on_delete=models.CASCADE,)
 
-    Client = models.ForeignKey('Client')
+    Client = models.ForeignKey('Client',on_delete=models.CASCADE,)
 
     REQUIRED_FIELDS = ['Client']

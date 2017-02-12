@@ -11,8 +11,8 @@ Usually a vessel, aircraft, truck, or rail
 '''
 
 class EventGroup(Tracking):
-    Shipment = models.ForeignKey('Shipment')
-    Client = models.ForeignKey('Client')
+    Shipment = models.ForeignKey('Shipment',on_delete=models.CASCADE,)
+    Client = models.ForeignKey('Client',on_delete=models.CASCADE,)
 
     Name = models.CharField(max_length=50) # Voyage/Flight Number?
     # We do not support the idea of feeder/mother, All legs of a shipment are defined differently and we will not label them
@@ -20,12 +20,12 @@ class EventGroup(Tracking):
     Mode = models.CharField(max_length=1, choices=MODES, default='O')
     Sequence = models.IntegerField()
     BillNumber = models.CharField(max_length=12)
-    Carrier = models.ForeignKey('Carrier')
+    Carrier = models.ForeignKey('Carrier',on_delete=models.CASCADE,)
 
     #VesselInfo probably needed here
     #VesselIdentifier = models.CharField(max_length=50) #IMO, Tail Number, License Plate, etc.
     #VesselName = models.CharField(max_length=50) #OPTIONAL
-    #VesselOperator = models.ForeignKey(Carrier)
+    #VesselOperator = models.ForeignKey('Carrier',on_delete=models.CASCADE,)
     #VoyageIdentifier = models.CharField(max_length=50) # Voyage/Flight Number?
 
 

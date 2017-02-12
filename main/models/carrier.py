@@ -7,9 +7,9 @@ from .main import *
 #
 
 class Carrier(Tracking):
-    Client = models.ForeignKey('Client')
+    Client = models.ForeignKey('Client',on_delete=models.CASCADE,)
     Name = models.CharField(max_length=50)
-    Address = models.ForeignKey('Address',null=True,blank=True)
+    Address = models.ForeignKey('Address',null=True,blank=True,on_delete=models.CASCADE,)
     Modes = models.CharField(max_length=50) # Ocean/Air/Truck/Rail
 
     def __str__(self):

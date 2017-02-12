@@ -8,7 +8,7 @@ from .country import Country
 
 class Security(models.Model):
     CommonName = models.CharField(max_length=50)
-    Country = models.ForeignKey(Country)
+    Country = models.ForeignKey(Country,on_delete=models.CASCADE,)
     Mode = models.CharField(max_length=5) # Air,Ocean,Truck,Rail
     ImportExport = models.CharField(max_length=1) # I/E
 

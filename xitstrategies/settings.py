@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authentication',
+#    'authentication',
+    'mama_cas'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -142,4 +143,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'authentication.Account'
+#AUTH_USER_MODEL = 'authentication.Account'

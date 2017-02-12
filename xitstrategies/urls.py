@@ -16,19 +16,20 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from rest_framework_nested import routers
-from authentication.views import AccountViewSet, LoginView, LogoutView
+#from authentication.views import AccountViewSet, LoginView, LogoutView
 
 router = routers.SimpleRouter()
-router.register(r'accounts', AccountViewSet)
+# router.register(r'accounts', AccountViewSet)
 
 urlpatterns = [
-    '',
     url(r'^main/',include('main.urls')),
     url(r'^admin/', admin.site.urls),
 
     url(r'^api/v1/', include(router.urls)),
-    url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
-    url(r'^api/v1/auth/logout/$', LogoutView.as_view(), name='logout'),
+    # url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
+    # url(r'^api/v1/auth/logout/$', LogoutView.as_view(), name='logout'),
 
-    url('^.*$', IndexView.as_view(), name='index')
+    url(r'', include('mama_cas.urls')),
+
+    # url('^.*$', IndexView.as_view(), name='index')
 ]

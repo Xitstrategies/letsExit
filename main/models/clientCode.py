@@ -12,7 +12,7 @@ class ClientCode(Tracking):
     # ex. NMFTASCAC, JPSCAC
     CodeType = models.CharField(max_length=50)
 
-    Client = models.ForeignKey('Client')
+    Client = models.ForeignKey('Client',on_delete=models.CASCADE,)
 
     def __str__(self):
         return self.Client.Name + ' ' + self.Code

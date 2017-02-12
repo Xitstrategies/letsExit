@@ -14,9 +14,9 @@ class Contact(Tracking):
     Phone = models.CharField(max_length=15)
     Mobile = models.CharField(max_length=15)
     Email = models.EmailField()
-    Address = models.ForeignKey('Address', null=True)
+    Address = models.ForeignKey('Address', null=True,on_delete=models.CASCADE,)
 
-    Client = models.ForeignKey('Client', null=False)
+    Client = models.ForeignKey('Client', null=False,on_delete=models.CASCADE,)
 
     def __str__(self):
         return self.Name

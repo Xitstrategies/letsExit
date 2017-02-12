@@ -8,8 +8,8 @@ from .carrier import Carrier
 #
 
 class CarrierCode(Tracking):
-    Client = models.ForeignKey('Client')
-    Carrier = models.ForeignKey('Carrier')
+    Client = models.ForeignKey('Client',on_delete=models.CASCADE,)
+    Carrier = models.ForeignKey('Carrier',on_delete=models.CASCADE,)
     Code = models.CharField(max_length=15)
     Type = models.CharField(max_length=50)
 

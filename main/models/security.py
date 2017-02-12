@@ -8,8 +8,8 @@ from .main import Client,Tracking
 #
 
 class Security(Tracking):
-    Shipment = models.ForeignKey('Shipment')
-    Client = models.ForeignKey('Client')
+    Shipment = models.ForeignKey('Shipment',on_delete=models.CASCADE,)
+    Client = models.ForeignKey('Client',on_delete=models.CASCADE,)
 
     SecurityType = models.CharField(max_length=50)
     BillNumberPrefix = models.CharField(max_length=4)
